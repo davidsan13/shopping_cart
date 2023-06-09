@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Products = () => {
+const Products = ({addCart}) => {
   return (
-    <h1>Products</h1>
+    <>
+      <h1>Products</h1>
+      <button onClick={addCart}> AddCart</button>
+    </>
   )
 }
 

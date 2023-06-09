@@ -4,6 +4,7 @@ import RouteSwitch from './components/RouteSwitch'
 function App() {
   return (
       <BrowserRouter>
+        
         <div className="App">
           <Navbar/>
           <RouteSwitch/>
