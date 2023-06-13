@@ -1,14 +1,14 @@
 import React, { useState }from 'react'
 
-const ProductCard = ({addCart}) => {
-  const [product, setProduct] = useState()
-
+const ProductCard = ({addCart, product}) => {
   return (
-    <div className='productcard'>
-      {/* <h1>{product.name}</h1>
+    <div className='productcard' key={product.id}>
+      <h1>{product.name}</h1>
+      <img src={product.image} alt="video game"/>
       <h2>{product.price}</h2>
-      <h2>{product.</h2> */}
       <button onClick={addCart}> AddCart</button>
+      <h2>{product.detail}</h2>
+      
     </div>
   )
 }
