@@ -2,25 +2,17 @@ import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 import Products from '../pages/Products'
 import RouteSwitch from './RouteSwitch'
-const ShoppingCart = () => {
-  const [cart, setCart] = useState([]);
-
-  const addCart = (id) => {
-  //  setCart((prevState) => {
-  //     [...prevState, id]
-  //   }) 
-    console.log('add')
-    console.log(cart)
-  }
-
-  const removeItem = (id) => {
-    setCart((prevState) => {
-      prevState.filter(item => item.id != id)
-    })
-  }
+const ShoppingCart = ({cartItems, increaseQty, decreaseQty}) => {
+  const cart = cartItems.map(item => (<>
+  <h1>{item.item.id}</h1>
+  <button onClick={()=>increaseQty(item.item.id)}>+</button>
+  </>
+  ))
+ 
   return (
     <div className='shoppingcart'>
      <h1>Shopping Cart</h1>
+     {cart}
     </div>
   )
   
