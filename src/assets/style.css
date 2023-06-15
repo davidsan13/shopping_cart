@@ -110,6 +110,11 @@ nav h1 {
   color: var(--color-white);
 }
 
+nav img {
+  width: 15rem;
+  height: 25rem;
+}
+
 nav ul {
   position: absolute;
   display: -webkit-box;
@@ -122,11 +127,6 @@ nav ul {
 nav ul li a {
   color: var(--color-secondary);
   text-decoration: none;
-}
-
-img {
-  width: 15rem;
-  height: 25rem;
 }
 
 .products-container {
@@ -175,6 +175,19 @@ img {
   cursor: pointer;
 }
 
+.main-container {
+  display: -ms-grid;
+  display: grid;
+  width: 75%;
+  -ms-grid-columns: 50rem 1fr;
+      grid-template-columns: 50rem 1fr;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -185,9 +198,12 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   background-color: #f8f5f5;
-  border-top: 1px solid blue;
-  border-bottom: 1px solid blue;
+  border-top: 2px solid var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
   height: 50rem;
   width: 100%;
   margin-top: 8rem;
@@ -215,13 +231,6 @@ img {
   /* Start #5cbcb0 from 0 and end at 5%, Start #fff at 5% and end at 15%, Start #5cbcb0 again at 15% and end at 100% */
   background-size: 593.97px 593.97px;
   background-repeat: no-repeat;
-}
-
-.main .main-sec-1 img {
-  margin: 1rem;
-  margin-top: 3rem;
-  height: 15rem;
-  width: 10rem;
 }
 
 .main .main-sec-2 {
@@ -263,5 +272,27 @@ img {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--color-secondary);
+}
+
+.main-sec-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  width: 23rem;
+  -webkit-box-shadow: 0 1px 2px 1px #00000026;
+          box-shadow: 0 1px 2px 1px #00000026;
+  border-radius: 0.5rem;
+}
+
+.main-sec-3 .main-card {
+  overflow: hidden;
+  -webkit-box-shadow: 0 1px 2px 1px #00000026;
+          box-shadow: 0 1px 2px 1px #00000026;
+  border-radius: 0.5rem;
+}
+
+.main-sec-3 img {
+  max-width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
