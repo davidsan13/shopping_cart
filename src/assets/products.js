@@ -84,7 +84,8 @@ export const data = [
     name: "Mario Kart 8 Deluxe - Nintendo Switch",
     detail: "Hit the road with the definitive version of Mario Kart 8 and play anytime, any-where! Race your friends or battle them in a revised battle mode on new and returning battle courses. Play locally in up to 4-player multiplayer in 1080p while playing in TV Mode. Every track from the Wii U version, including DLC, makes a glorious return. Plus, the Inklings appear as all-new guest characters, along with returning favorites, such as King Boo, Dry Bones, and Bowser Jr.!",
     price: "50.99",
-    image: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5723/5723304_sd.jpg;maxHeight=640;maxWidth=550",
+    image: "https://i5.walmartimages.com/asr/0d359dfa-4d43-47e5-a4ee-8c3784c00c75_1.b331dfe10e75a4b5bfe1e87fe30efed5.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+    // image: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5723/5723304_sd.jpg;maxHeight=640;maxWidth=550",
     category: "Nintendo Switch"
   },
   {

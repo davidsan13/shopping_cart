@@ -58,22 +58,69 @@ html {
   font-family: sans-serif;
 }
 
+:root {
+  --color-primary: #49c5b6;
+  --color-secondary:#DF6C4F;
+  --color-secondary-1:#41B3A3;
+  --color-white: #FFFFFF;
+  --color-black: rgb(41, 41, 41);
+  --color-grey-0: #373d4b;
+  --color-grey-1: #a3a8a4;
+  --color-grey-2: #b2becd;
+  --color-grey-3: #d8dee6;
+  --color-grey-4: #454e56;
+  --color-grey-5: #2a2e35;
+  --color-grey-6: #12181b;
+  --br-sm-2: 14px;
+  --box-shadow-1: 0 3px 15px rgba(63, 62, 62, 0.849);
+}
+
+.App {
+  height: 100vh;
+  background-color: #dadada;
+}
+
 nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: 2.5rem;
   font-weight: bold;
+  background-color: var(--color-primary);
+  height: 8rem;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-nav ul {
+nav .nav-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 1rem;
+  width: 150rem;
+  position: relative;
+}
+
+nav h1 {
+  color: var(--color-white);
+}
+
+nav ul {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 3.5rem;
+  right: 0;
 }
 
 nav ul li a {
+  color: var(--color-secondary);
   text-decoration: none;
 }
 
@@ -90,12 +137,14 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 1rem;
 }
 
 .products-container .productcard {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 1rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -107,5 +156,112 @@ img {
       -ms-flex-align: center;
           align-items: center;
   gap: 1rem;
+}
+
+.products-container .productcard h1 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.products-container .productcard h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.products-container .productcard button {
+  height: 3rem;
+  width: 6rem;
+  cursor: pointer;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f8f5f5;
+  border-top: 1px solid blue;
+  border-bottom: 1px solid blue;
+  height: 50rem;
+  width: 100%;
+  margin-top: 8rem;
+  gap: 2rem;
+}
+
+.main .main-sec-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 25%;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #5cbcb0 5%, #ffffff 5%, #ffffff 15%, #5cbcb0 15%);
+  /* Start #5cbcb0 from 0 and end at 5%, Start #fff at 5% and end at 15%, Start #5cbcb0 again at 15% and end at 100% */
+  background-size: 593.97px 593.97px;
+  background-repeat: no-repeat;
+}
+
+.main .main-sec-1 img {
+  margin: 1rem;
+  margin-top: 3rem;
+  height: 15rem;
+  width: 10rem;
+}
+
+.main .main-sec-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 3rem;
+}
+
+.main .main-sec-2 img {
+  height: 20rem;
+  width: 10rem;
+}
+
+.main h1 {
+  text-align: center;
+  font-size: 5rem;
+  /* To avoid multiple instances */
+}
+
+.main h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.main h3 {
+  font-size: 2rem;
+}
+
+.main a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-secondary);
 }
 /*# sourceMappingURL=style.css.map */

@@ -5,9 +5,9 @@ const ProductCard = ({addCart, product}) => {
     <div className='productcard' key={product.id}>
       <h1>{product.name}</h1>
       <img src={product.image} alt="video game"/>
-      <h2>{product.price}</h2>
-      <button onClick={addCart}> AddCart</button>
-      <h2>{product.detail}</h2>
+      <h2>$ {product.price}</h2>
+      <button onClick={addCart}> Add To Cart</button>
+      {/* <h2>{product.detail}</h2> */}
       
     </div>
   )

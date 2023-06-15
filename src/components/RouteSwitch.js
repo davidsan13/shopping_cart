@@ -6,14 +6,15 @@ import ShoppingCart from "./ShoppingCart";
 import Navbar from './Navbar';
 const RouteSwitch = () => {
   const [cart, setCart] = useState([]);
+  const [numInCart, setnumInCart] = useState(0)
 
   useEffect(() => {
     console.log(cart)
-    // console.log(totalPrice())
+    setnumInCart(checkQty())
   }, [cart])
 
   const addCart = (product) => {
-    const itemInCart = cart.filter(item => item.id === item.id)
+    const itemInCart = cart.filter(item => item.item.id === product.id)
     setCart((prevState) => {
       if(itemInCart.length === 1) {
         const newItem = prevState.map(item => {
@@ -61,11 +62,15 @@ const RouteSwitch = () => {
     })
   }
   const totalPrice = () => {
-    return cart.map(item => item.id.price * item.quantity).reduce((a,b)=> a+b, 0)
+    return cart.map(item => item.item.price * item.quantity).reduce((a,b)=> a+b, 0)
+  }
+
+  const checkQty = () => {
+    return cart.map(item => item.quantity).reduce((a,b) => a+b, 0)
   }
   return (
     <>
-      <Navbar cart={cart}/>
+      <Navbar cart={numInCart}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products addCart={addCart} />} />
