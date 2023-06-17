@@ -73,8 +73,12 @@ html {
   --box-shadow-1: 0 3px 15px rgba(63, 62, 62, 0.849);
 }
 .App {
-  height: 100vh;
+  // height: 100vh;
   background-color: rgb(218, 218, 218);
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+
 }
 nav {
   display: flex;
@@ -115,30 +119,43 @@ nav {
 }
 
 .products-container {
+  // width: 75%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  margin: 1rem;
+  justify-items: center;
+  gap: 1rem;
+  padding: 6rem 20rem;
+  background-color: white;
   .productcard {
+    width: 35rem;
     display: flex;
-    margin: 1rem;
+    padding: 1rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px 1px #00000026;
+    border-radius: 0.5rem;
     h1{
       font-size: 1.7rem;
       font-weight: bold;
       text-align: center;
     }
     h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
     }
     button {
+      font-size: 2rem;
+      font-weight: bold;
       height: 3rem;
-      width: 6rem;
+      width: 15rem;
       cursor: pointer;
+    }
+    img {
+      width: 15rem;
+      height: 20rem;
     }
   }
 }
@@ -189,7 +206,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 5.5rem;
     img {
       height: 20rem;
       width: 10rem;
@@ -201,24 +218,29 @@ nav {
     /* To avoid multiple instances */
   }
   h2 {
-    font-size: 3rem;
+    font-size: 6rem;
     font-weight: bold;
   }
   h3 {
-    font-size: 2rem;
+    font-size: 4rem;
   }
   a {
-    
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 3.5rem;
     font-weight: bold;
     color: var(--color-secondary);
+  }
+  button {
+    transition: .2s ease-in-out 0s;
+     &:hover {
+      transform: scale(1.25);
+    }
   }
 }
 .main-sec-3 {
   display: flex;
   text-align: center;
-  width: 23rem;
+  width: 38rem;
   box-shadow: 0 1px 2px 1px #00000026;
   border-radius: 0.5rem;
   .main-card {

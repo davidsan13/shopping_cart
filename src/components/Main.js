@@ -24,7 +24,7 @@ const Main = () => {
         <div className='main-sec-2'>
           <h2>Video Game Top Deals</h2>
           <h3>Check out the latest video game deals.</h3>
-          <h3><Link to="/Products">Shop Top Deals</Link></h3> 
+          <button><Link to="/Products">Shop Top Deals</Link></button> 
           
         </div>
         
