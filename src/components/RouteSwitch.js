@@ -74,6 +74,8 @@ const RouteSwitch = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products addCart={addCart} />} />
+        <Route path="/products/:categoryId" element={<Products addCart={addCart} />} />
+
         <Route path="/cart" element={<ShoppingCart cartItems={cart} 
         decreaseQty={decreaseQty} 
         increaseQty={increaseQty}/>} 
