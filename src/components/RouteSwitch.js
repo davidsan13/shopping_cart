@@ -53,7 +53,7 @@ const RouteSwitch = () => {
   const decreaseQty = (id) => {
     setCart((prevState) => {
       const newItem = prevState.map(item => {
-        if(item.id === id) {
+        if(item.item.id === id) {
           return {...item, quantity: item.quantity - 1}
         }
         return item
@@ -62,7 +62,7 @@ const RouteSwitch = () => {
     })
   }
   const totalPrice = () => {
-    return cart.map(item => item.item.price * item.quantity).reduce((a,b)=> a+b, 0)
+    return cart.map(item => item.item.price * item.quantity).reduce((a,b)=> a+b, 0).toFixed(2)
   }
 
   const checkQty = () => {
@@ -78,7 +78,10 @@ const RouteSwitch = () => {
 
         <Route path="/cart" element={<ShoppingCart cartItems={cart} 
         decreaseQty={decreaseQty} 
-        increaseQty={increaseQty}/>} 
+        increaseQty={increaseQty}
+        totalPrice={totalPrice}
+        checkQty={checkQty}
+        />} 
         />
       </Routes>
     </>
