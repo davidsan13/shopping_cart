@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import ProductCard from './ProductCard';
-import Products from '../pages/Products'
-import RouteSwitch from './RouteSwitch'
-const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty}) => {
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty, removeItem}) => {
+  
   const cart = cartItems.map(item => (
-  <div className="cart-item">
+  <div key={item.item.id} className="cart-item">
     <img src={item.item.image} alt="video game"/>
     <h1>{item.item.name}</h1>
     <h2>${item.item.price}</h2>
-    <h2>Remove</h2>
+    <button onClick={()=>removeItem(item.item.id)}>Remove</button>
     <div className='btn-container'>
       <button onClick={()=>decreaseQty(item.item.id)}>-</button>
       <h1>{item.quantity}</h1>
@@ -17,6 +17,15 @@ const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty
   </div>
   ))
  
+  const emptyCart = () => {
+    return (
+    <div className='empty-cart'>
+      <h1>Cart (O Items)</h1>
+      <img />
+      <h2>Time to start shopping!</h2>
+      <Link to="/Products"> Products</Link>
+    </div>
+  )}
   const qty = () => {
     const quantity = checkQty()
     return <div className="total">
@@ -31,7 +40,9 @@ const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty
   const estimateTotal = () => {
     return (Number(totalPrice()) + Number(tax())).toFixed(2)
   }
-  return (
+
+  const renderPage = () => {
+    return cartItems.length === 0 ? emptyCart() : 
     <div className='shop-container'>
       <div className='shoppingcart'>
       {/* <h1>Shopping Cart</h1> */}
@@ -48,9 +59,10 @@ const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty
           <h2>${estimateTotal()}</h2>
         </div>
       </div>
-      
     </div>
-    
+  }
+  return (
+    renderPage()
   )
   
 }

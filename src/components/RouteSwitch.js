@@ -11,6 +11,7 @@ const RouteSwitch = () => {
   useEffect(() => {
     console.log(cart)
     setnumInCart(checkQty())
+    console.log(cart)
   }, [cart])
 
   const addCart = (product) => {
@@ -33,7 +34,7 @@ const RouteSwitch = () => {
 
   const removeItem = (id) => {
     setCart((prevState) => {
-      prevState.filter(item => item.id != id)
+      return prevState.filter(item => item.item.id !== id)
     })
   }
   
@@ -81,6 +82,7 @@ const RouteSwitch = () => {
         increaseQty={increaseQty}
         totalPrice={totalPrice}
         checkQty={checkQty}
+        removeItem={removeItem}
         />} 
         />
       </Routes>

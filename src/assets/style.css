@@ -375,6 +375,7 @@ aside {
   border-radius: 0.5rem;
   margin: 1rem;
   padding: 2rem;
+  background-color: var(--color-white);
 }
 
 .cart-item {
@@ -392,6 +393,17 @@ aside {
   padding: 1rem;
 }
 
+.cart-item button {
+  background-color: var(--color-white);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: .3rem;
+}
+
+.cart-item button:hover {
+  background-color: var(--color-grey-1);
+}
+
 .cart-item img {
   width: 10rem;
   height: 15rem;
@@ -405,6 +417,17 @@ aside {
   height: 22rem;
   font-size: 2rem;
   padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: var(--color-white);
 }
 
 .price-container .total {
@@ -440,6 +463,9 @@ aside {
   border-radius: 1rem;
   background-color: var(--color-white);
   overflow: hidden;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .btn-container h1 {
@@ -452,11 +478,5 @@ aside {
   font-size: 2rem;
   border-radius: 1rem;
   margin: .2rem;
-  background-color: var(--color-white);
-  text-align: center;
-}
-
-.btn-container button:hover {
-  background-color: var(--color-grey-1);
 }
 /*# sourceMappingURL=style.css.map */
