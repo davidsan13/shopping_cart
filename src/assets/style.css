@@ -222,7 +222,7 @@ aside {
 
 .product-sec-1 .productcard img {
   width: 15rem;
-  height: 20rem;
+  height: auto;
 }
 
 .main-container {
@@ -478,5 +478,33 @@ aside {
   font-size: 2rem;
   border-radius: 1rem;
   margin: .2rem;
+}
+
+.empty-cart {
+  background-color: white;
+  font-size: 3rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.empty-cart img {
+  margin: 1rem;
+  width: 45rem;
+  height: 40rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.empty-cart a {
+  color: #2e2f32;
+  font-size: 2.3rem;
+  height: 2rem;
+  padding: 0 1rem;
+}
+
+.empty-cart a:hover {
+  background-color: #d4d3d3;
+  -webkit-box-shadow: inset 0 0 0 0.125rem #2e2f32;
+          box-shadow: inset 0 0 0 0.125rem #2e2f32;
 }
 /*# sourceMappingURL=style.css.map */

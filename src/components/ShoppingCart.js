@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import cartImg from '../assets/cart.jpg'
 
 const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty, removeItem}) => {
   
@@ -21,7 +22,7 @@ const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty
     return (
     <div className='empty-cart'>
       <h1>Cart (O Items)</h1>
-      <img />
+      <img src={cartImg}/>
       <h2>Time to start shopping!</h2>
       <Link to="/Products"> Products</Link>
     </div>
