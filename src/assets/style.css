@@ -76,17 +76,8 @@ html {
 }
 
 .App {
+  height: 100vh;
   background-color: #dadada;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 nav {
@@ -143,7 +134,7 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: white;
+  background-color: #dadada;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -175,7 +166,7 @@ aside {
       grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   gap: 1rem;
-  background-color: white;
+  background-color: #dadada;
 }
 
 .product-sec-1 .productcard {
@@ -199,6 +190,7 @@ aside {
   -webkit-box-shadow: 0 1px 2px 1px #00000026;
           box-shadow: 0 1px 2px 1px #00000026;
   border-radius: 0.5rem;
+  background-color: white;
 }
 
 .product-sec-1 .productcard h1 {
@@ -485,6 +477,7 @@ aside {
   font-size: 3rem;
   padding: 1.5rem;
   text-align: center;
+  height: 100vh;
 }
 
 .empty-cart img {
@@ -496,8 +489,9 @@ aside {
 }
 
 .empty-cart a {
-  color: #2e2f32;
+  color: var(--color-secondary);
   font-size: 2.3rem;
+  font-weight: bold;
   height: 2rem;
   padding: 0 1rem;
 }
