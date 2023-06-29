@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Products from "../pages/Products";
 import ShoppingCart from "./ShoppingCart";
 import Navbar from './Navbar';
+import Footer from "./Footer";
 const RouteSwitch = () => {
   const [cart, setCart] = useState([]);
   const [numInCart, setnumInCart] = useState(0)
@@ -86,6 +87,7 @@ const RouteSwitch = () => {
         />} 
         />
       </Routes>
+      <Footer/>
     </>
     
   );

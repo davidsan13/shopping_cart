@@ -1,18 +1,16 @@
-import Navbar from './components/Navbar'
-import { BrowserRouter } from "react-router-dom"
+
+import { HashRouter } from "react-router-dom"
 import RouteSwitch from './components/RouteSwitch'
-import ShoppingCart from './components/ShoppingCart'
 import './assets/style.css'
+
 function App() {
   return (
    
-      <BrowserRouter>
+      <HashRouter>
         <div className="App">
-          {/* <Navbar/> */}
           <RouteSwitch/>
-
         </div>
-      </BrowserRouter>
+      </HashRouter>
   );
 }
 

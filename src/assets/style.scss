@@ -72,9 +72,17 @@ html {
   --br-sm-2: 14px;
   --box-shadow-1: 0 3px 15px rgba(63, 62, 62, 0.849);
 }
+#root{
+  height: 100%;
+}
 .App {
-  height: 100vh;
+  min-height: 100%;
   background-color: rgb(218, 218, 218);
+  min-width: 90rem;
+  // position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 nav {
   display: flex;
@@ -89,7 +97,8 @@ nav {
 
   .nav-container {
     display: flex;
-    width: 150rem;
+    min-width: 95rem;
+    
     position: relative;
   }
   h1 {
@@ -200,12 +209,12 @@ aside {
   border-bottom: 2px solid var(--color-secondary);
   height: 50rem;
   width: 100%;
-  margin-top: 8rem;
+  margin: 14rem 0;
   gap: 2rem;
   .main-sec-1 {
     display: flex;
     flex-direction: column;
-    min-width: 25%;
+    min-width: 45rem;
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -214,22 +223,13 @@ aside {
     /* Start #5cbcb0 from 0 and end at 5%, Start #fff at 5% and end at 15%, Start #5cbcb0 again at 15% and end at 100% */
     background-size: 593.97px 593.97px;
     background-repeat: no-repeat;
-    // img {
-    //   margin: 1rem;
-    //   margin-top: 3rem;
-    //   height: 15rem;
-    //   width: 10rem;
-    // }
   }
   .main-sec-2 {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5.5rem;
-    img {
-      height: 20rem;
-      width: 10rem;
-    }
+    min-width: 50rem;
   }
   h1 {
     text-align: center;
@@ -259,7 +259,7 @@ aside {
 .main-sec-3 {
   display: flex;
   text-align: center;
-  width: 38rem;
+  max-width: 38rem;
   box-shadow: 0 1px 2px 1px #00000026;
   border-radius: 0.5rem;
   .main-card {
@@ -372,11 +372,15 @@ aside {
 }
 
 .empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   font-size: 3rem;
   padding: 1.5rem;
   text-align: center;
-  height: 100vh;
+  height: 75rem;
   img {
     margin: 1rem;
     width: 45rem;
@@ -395,5 +399,24 @@ aside {
       background-color: rgb(212, 211, 211);
       box-shadow:inset 0 0 0 0.125rem #2e2f32;
     }
+  }
+}
+
+// Footer
+
+.Footer {
+  // align-self: flex-end;
+  // position: sticky;
+  bottom: 0;
+  font-size: 2rem;
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  img {
+    height: 4rem;
+    width: 4rem;
   }
 }
