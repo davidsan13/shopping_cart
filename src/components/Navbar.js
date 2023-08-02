@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
-import RouteSwitch from "./RouteSwitch";
-const Navbar = ({cart}) => {
- 
+
+import { ShopContext } from './ShopContextProvider';
+const Navbar = () => {
+ const {numInCart} = useContext(ShopContext)
   return (
     <nav>
       <div className="nav-container">
@@ -15,7 +16,7 @@ const Navbar = ({cart}) => {
             <Link to="/Products">Products</Link>
           </li>
           <li>
-            <Link to="/Cart">Cart {cart > 0 && cart}</Link>
+            <Link to="/Cart">Cart {numInCart > 0 && numInCart}</Link>
           </li>
         </ul>
       </div>

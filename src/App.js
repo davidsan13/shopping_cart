@@ -1,16 +1,15 @@
 
-import { HashRouter } from "react-router-dom"
-import RouteSwitch from './components/RouteSwitch'
+import { RouterProvider } from "react-router-dom"
+import router from "./components/Routes";
 import './assets/style.css'
-
+import { ShopContextProvider } from "./components/ShopContextProvider";
 function App() {
   return (
-   
-      <HashRouter>
-        <div className="App">
-          <RouteSwitch/>
-        </div>
-      </HashRouter>
+    <div className="App">
+      <ShopContextProvider>
+        <RouterProvider router={router} />
+      </ShopContextProvider>
+    </div>
   );
 }
 

@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ProductCard from '../components/ProductCard'
 import {data} from '../assets/products'
 import { Link, useParams } from 'react-router-dom';
-const Products = ({addCart}) => {
+import { ShopContext } from '../components/ShopContextProvider';
+
+const Products = () => {
+  const { addCart } = useContext(ShopContext)
   const { categoryId } = useParams()
   const [product, setProduct] = useState(data)
 

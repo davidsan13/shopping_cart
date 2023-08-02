@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import cartImg from '../assets/cart.jpg'
+import cartImg from '../assets/cart.jpg';
+import { ShopContext } from '../components/ShopContextProvider';
 
-const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty, removeItem}) => {
-  
-  const cart = cartItems.map(item => (
+const ShoppingCart = () => {
+  const {
+    increaseQty,
+    decreaseQty,
+    totalPrice,
+    numInCart,
+    removeItem,
+    cart
+  } = useContext(ShopContext)
+
+  const shopCart = cart.map(item => (
   <div key={item.item.id} className="cart-item">
     <img src={item.item.image} alt="video game"/>
     <h1>{item.item.name}</h1>
@@ -22,13 +31,13 @@ const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty
     return (
     <div className='empty-cart'>
       <h1>Cart (O Items)</h1>
-      <img src={cartImg}/>
+      <img src={cartImg} alt="shopping cart"/>
       <h2>Time to start shopping!</h2>
       <Link to="/Products"> Products</Link>
     </div>
   )}
   const qty = () => {
-    const quantity = checkQty()
+    const quantity = numInCart
     return <div className="total">
       <h1>Subtotal </h1> 
       <h2>({quantity} {quantity > 1 ? 'items': 'item'}) ${totalPrice()}</h2>
@@ -43,11 +52,11 @@ const ShoppingCart = ({cartItems, increaseQty, decreaseQty, totalPrice, checkQty
   }
 
   const renderPage = () => {
-    return cartItems.length === 0 ? emptyCart() : 
+    return cart.length === 0 ? emptyCart() : 
     <div className='shop-container'>
       <div className='shoppingcart'>
       {/* <h1>Shopping Cart</h1> */}
-        {cart}
+        {shopCart}
       </div>
       <div className='price-container'>
         {qty()}
