@@ -1,82 +1,57 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+} from "react";
+import { cartReducer, sanitizeCart, summarizeCart, initialCart } from "../lib/cart";
 
-export const ShopContext = createContext(null)
+const STORAGE_KEY = "game-central-cart";
 
-export const ShopContextProvider = (props) => {
-  const [cart, setCart] = useState([]);
-  const [numInCart, setnumInCart] = useState(0)
+const ShopContext = createContext(null);
+
+function loadCart() {
+  try {
+    return sanitizeCart(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+  } catch {
+    return initialCart; // storage blocked or the saved value is corrupt
+  }
+}
+
+export function ShopContextProvider({ children }) {
+  const [cart, dispatch] = useReducer(cartReducer, undefined, loadCart);
 
   useEffect(() => {
-    setnumInCart(checkQty())
-  }, [cart])
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    } catch {
+      // Private mode or a full quota: the cart still works, it just won't persist.
+    }
+  }, [cart]);
 
-  const addCart = (product) => {
-    const itemInCart = cart.filter(item => item.item.id === product.id)
-    setCart((prevState) => {
-      if(itemInCart.length === 1) {
-        const newItem = prevState.map(item => {
-          if(item.item.id === product.id) {
-            return {...item, quantity: item.quantity + 1}
-          }
-          return item
-        })
-        return newItem
-      } else {
-          return [...prevState, {item: product, quantity: 1}]
-      }
-    })
-  }
+  const addCart = useCallback((id) => dispatch({ type: "add", id }), []);
+  const increaseQty = useCallback((id) => dispatch({ type: "increase", id }), []);
+  const decreaseQty = useCallback((id) => dispatch({ type: "decrease", id }), []);
+  const removeItem = useCallback((id) => dispatch({ type: "remove", id }), []);
 
-  const removeItem = (id) => {
-    setCart((prevState) => {
-      return prevState.filter(item => item.item.id !== id)
-    })
-  }
-  
-  const increaseQty = (id) => {
-    setCart((prevState) => {
-      const newItem = prevState.map(item => {
-        console.log(item)
-        if(item.item.id === id) {
-          return {...item, quantity: item.quantity + 1}
-        }
-        return item
-      })
-      return newItem
-    })
-    console.log(id)
-  }
-  const decreaseQty = (id) => {
-    setCart((prevState) => {
-      const newItem = prevState.map(item => {
-        if(item.item.id === id) {
-          return {...item, quantity: item.quantity - 1}
-        }
-        return item
-      })
-      return newItem
-    })
-  }
-  const totalPrice = () => {
-    return cart.map(item => item.item.price * item.quantity).reduce((a,b)=> a+b, 0).toFixed(2)
-  }
+  const value = useMemo(
+    () => ({
+      ...summarizeCart(cart),
+      addCart,
+      increaseQty,
+      decreaseQty,
+      removeItem,
+    }),
+    [cart, addCart, increaseQty, decreaseQty, removeItem]
+  );
 
-  const checkQty = () => {
-    return cart.map(item => item.quantity).reduce((a,b) => a+b, 0)
-  }
-  const contextValue = {
-    addCart,
-    removeItem,
-    increaseQty,
-    decreaseQty,
-    totalPrice,
-    numInCart,
-    cart
-  }
-  
-  return (
-    <ShopContext.Provider value={contextValue}>
-      {props.children}
-    </ShopContext.Provider>
-  )
+  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
+}
+
+export function useShop() {
+  const context = useContext(ShopContext);
+  if (!context) throw new Error("useShop must be used inside <ShopContextProvider>");
+  return context;
 }

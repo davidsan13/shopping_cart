@@ -1,16 +1,17 @@
-import React from 'react'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faGitHubSquare } from '@fortawesome/free-solid-svg-icons'
-import github from '../assets/github.svg'
-const Footer = () => {
-  return (
-    <div className='Footer'>
-      <h1>Copyright © 2023 David San</h1>
-      <a href="https://www.github.com/davidsan13" ><img src={github}/></a>
-     
-      
-    </div>
-  )
-}
+import React from "react";
+import github from "../assets/github.svg";
 
-export default Footer
+const Footer = () => (
+  <footer className="site-footer">
+    <p>Demo store for a portfolio project. No orders are placed.</p>
+    <p>
+      <span>Copyright © 2023 David San</span>
+      <a href="https://www.github.com/davidsan13" className="site-footer__link">
+        <img src={github} alt="" />
+        GitHub
+      </a>
+    </p>
+  </footer>
+);
+
+export default Footer;

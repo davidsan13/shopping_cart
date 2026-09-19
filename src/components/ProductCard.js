@@ -1,16 +1,42 @@
-import React, { useState }from 'react'
+import React, { useEffect, useState } from "react";
+import { platforms } from "../assets/products";
+import { formatPrice } from "../lib/format";
 
-const ProductCard = ({addCart, product}) => {
+const ProductCard = ({ product, onAdd, as: Heading = "h2" }) => {
+  const [justAdded, setJustAdded] = useState(false);
+
+  useEffect(() => {
+    if (!justAdded) return undefined;
+    const timer = setTimeout(() => setJustAdded(false), 1500);
+    return () => clearTimeout(timer);
+  }, [justAdded]);
+
+  const handleAdd = () => {
+    onAdd(product.id);
+    setJustAdded(true);
+  };
+
   return (
-    <div className='productcard' key={product.id}>
-      <h1>{product.name}</h1>
-      <img src={product.image} alt="video game"/>
-      <h2>$ {product.price}</h2>
-      <button onClick={addCart}> Add To Cart</button>
-      {/* <h2>{product.detail}</h2> */}
-      
-    </div>
-  )
-}
+    <article className="product-card" data-platform={product.category}>
+      <div className="product-card__cover">
+        <img src={product.image} alt={`${product.title} cover art`} loading="lazy" />
+      </div>
+      <div className="product-card__body">
+        <span className="tag">{platforms[product.category].short}</span>
+        <Heading className="product-card__title">{product.title}</Heading>
+        <div className="product-card__buy">
+          <span className="price">{formatPrice(product.price)}</span>
+          <button type="button" className="btn" onClick={handleAdd}>
+            {justAdded ? "Added" : "Add to cart"}
+            <span className="sr-only"> {product.title}</span>
+          </button>
+        </div>
+        <span className="sr-only" role="status">
+          {justAdded ? `${product.title} added to cart` : ""}
+        </span>
+      </div>
+    </article>
+  );
+};
 
-export default ProductCard
+export default ProductCard;

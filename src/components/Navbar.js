@@ -1,28 +1,47 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { useShop } from "./ShopContextProvider";
 
-import { ShopContext } from './ShopContextProvider';
 const Navbar = () => {
- const {numInCart} = useContext(ShopContext)
-  return (
-    <nav>
-      <div className="nav-container">
-        <h1> Game Central </h1>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Products">Products</Link>
-          </li>
-          <li>
-            <Link to="/Cart">Cart {numInCart > 0 && numInCart}</Link>
-          </li>
-        </ul>
-      </div>
-      
-    </nav>
-  )
-}
+  const { count } = useShop();
 
-export default Navbar
+  return (
+    <header className="site-header">
+      <div className="site-header__inner">
+        <Link to="/" className="brand">
+          Game Central
+        </Link>
+        <nav aria-label="Main">
+          <ul>
+            <li>
+              <NavLink to="/" end>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/products">Products</NavLink>
+            </li>
+            <li>
+              <NavLink to="/cart">
+                Cart
+                {count > 0 && (
+                  <>
+                    <span className="cart-count" aria-hidden="true">
+                      {count}
+                    </span>
+                    <span className="sr-only">
+                      {" "}
+                      ({count} {count === 1 ? "item" : "items"})
+                    </span>
+                  </>
+                )}
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;

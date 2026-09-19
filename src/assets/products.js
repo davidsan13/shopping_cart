@@ -1,7 +1,7 @@
-export const data = [
+const catalog = [
   {
     id: 1,
-    name: "Marvel's Spider-Man: Miles Morales Utimate Edition - PlayStation 5",
+    name: "Marvel's Spider-Man: Miles Morales Ultimate Edition - PlayStation 5",
     detail: "Discover the complete web-slinging story with the Marvels Spider-Man: Miles Morales Ultimate Edition.",
     price: "39.99",
     image: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6459/6459585_sd.jpg;maxHeight=640;maxWidth=550",
@@ -120,4 +120,24 @@ export const data = [
     image: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6255/6255379_sd.jpg;maxHeight=640;maxWidth=550",
     category: "NintendoSwitch"
   },
-]
+];
+
+// Platform slugs double as the URL segment (/products/PS5) and the product `category`.
+export const platforms = {
+  PS5: { label: "PlayStation 5", short: "PS5" },
+  XboxX: { label: "Xbox Series X", short: "Xbox" },
+  NintendoSwitch: { label: "Nintendo Switch", short: "Switch" },
+};
+
+// Names arrive as "Title - Platform"; the platform is shown as a tag, so drop it from the title.
+const PLATFORM_SUFFIX =
+  /\s-\s(PlayStation 5|Xbox Series X(, Xbox One)?|Xbox One, Xbox Series X|Nintendo Switch)$/;
+
+export const data = catalog.map((product) => ({
+  ...product,
+  price: Number(product.price),
+  title: product.name.replace(PLATFORM_SUFFIX, "").trim(),
+  detail: product.detail.trim(),
+}));
+
+export const getProduct = (id) => data.find((product) => product.id === id);

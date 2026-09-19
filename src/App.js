@@ -1,15 +1,13 @@
-
-import { RouterProvider } from "react-router-dom"
-import router from "./components/Routes";
-import './assets/style.css'
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+import "./assets/style.scss";
 import { ShopContextProvider } from "./components/ShopContextProvider";
+
 function App() {
   return (
-    <div className="App">
-      <ShopContextProvider>
-        <RouterProvider router={router} />
-      </ShopContextProvider>
-    </div>
+    <ShopContextProvider>
+      <RouterProvider router={router} />
+    </ShopContextProvider>
   );
 }
 
