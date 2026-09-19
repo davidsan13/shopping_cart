@@ -29,4 +29,8 @@ npm run deploy   # build and publish to GitHub Pages
 - Routers that work locally can break under a subpath like `/shopping_cart/`; a hash router avoids that on GitHub Pages.
 
 # Project Screenshots
-<!-- TODO: replace with screenshots of the redesigned UI -->
+<img width="1172" height="1252" alt="Screenshot 2026-09-19 160406" src="https://github.com/user-attachments/assets/0207409c-c5a6-4a8a-9360-baffcea488d8" />
+<img width="1240" height="1252" alt="Screenshot 2026-09-19 160445" src="https://github.com/user-attachments/assets/0deef233-b70a-471b-95e1-77e695ef2cb8" />
+<img width="1240" height="1250" alt="Screenshot 2026-09-19 160433" src="https://github.com/user-attachments/assets/846be9f4-c8c4-4a3d-b289-dbdcf94b189c" />
+
+
