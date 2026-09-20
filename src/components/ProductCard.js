@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CoverImage from "./CoverImage";
 import { platforms } from "../assets/products";
 import { formatPrice } from "../lib/format";
 
@@ -19,7 +20,7 @@ const ProductCard = ({ product, onAdd, as: Heading = "h2" }) => {
   return (
     <article className="product-card" data-platform={product.category}>
       <div className="product-card__cover">
-        <img src={product.image} alt={`${product.title} cover art`} loading="lazy" />
+        <CoverImage src={product.image} alt={`${product.title} cover art`} />
       </div>
       <div className="product-card__body">
         <span className="tag">{platforms[product.category].short}</span>

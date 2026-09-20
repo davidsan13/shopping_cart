@@ -64,12 +64,13 @@ test("adding a game updates the nav count and the cart totals", () => {
   expect(within(summary).getByText("$16.19")).toBeInTheDocument(); // total
 });
 
-test("decreasing the last copy removes the game and shows the empty state", () => {
+test("decreasing the last copy removes the game and shows the empty state", async () => {
   renderApp("/products");
   userEvent.click(addButton("Halo Infinite"));
   userEvent.click(screen.getByRole("link", { name: /cart/i }));
   userEvent.click(screen.getByRole("button", { name: /decrease quantity of halo infinite/i }));
-  expect(screen.getByRole("heading", { name: /your cart is empty/i })).toBeInTheDocument();
+  // The row fades out for 200ms before it is removed, so wait for the empty state.
+  expect(await screen.findByRole("heading", { name: /your cart is empty/i })).toBeInTheDocument();
 });
 
 test("the cart survives a reload", () => {

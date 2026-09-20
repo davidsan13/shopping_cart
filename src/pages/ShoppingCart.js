@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useShop } from "../components/ShopContextProvider";
+import CoverImage from "../components/CoverImage";
 import { platforms } from "../assets/products";
 import { formatCents, formatPrice } from "../lib/format";
 import { TAX_RATE } from "../lib/cart";
 import useDocumentTitle from "../lib/useDocumentTitle";
 
+const EXIT_MS = 200; // keep in sync with the transition duration on .cart-line in style.scss
+
 const ShoppingCart = () => {
   const { lines, count, subtotal, tax, total, increaseQty, decreaseQty, removeItem } = useShop();
   useDocumentTitle("Cart");
+
+  // A removed row fades out for EXIT_MS before it is really taken out of the cart.
+  const [leaving, setLeaving] = useState(() => new Set());
+  const leave = (id) => {
+    if (leaving.has(id)) return;
+    setLeaving((current) => new Set(current).add(id));
+    setTimeout(() => {
+      removeItem(id);
+      setLeaving((current) => {
+        const next = new Set(current);
+        next.delete(id);
+        return next;
+      });
+    }, EXIT_MS);
+  };
 
   if (lines.length === 0) {
     return (
@@ -28,9 +46,13 @@ const ShoppingCart = () => {
       <div className="cart-layout">
         <ul className="cart-list">
           {lines.map(({ product, quantity, lineTotal }) => (
-            <li key={product.id} className="cart-line" data-platform={product.category}>
+            <li
+              key={product.id}
+              className={leaving.has(product.id) ? "cart-line is-leaving" : "cart-line"}
+              data-platform={product.category}
+            >
               <div className="cart-line__cover">
-                <img src={product.image} alt="" loading="lazy" />
+                <CoverImage src={product.image} alt="" />
               </div>
               <div className="cart-line__info">
                 <h2 className="cart-line__title">{product.title}</h2>
@@ -42,7 +64,7 @@ const ShoppingCart = () => {
                   <div className="stepper" role="group" aria-label={`Quantity of ${product.title}`}>
                     <button
                       type="button"
-                      onClick={() => decreaseQty(product.id)}
+                      onClick={() => (quantity === 1 ? leave(product.id) : decreaseQty(product.id))}
                       aria-label={`Decrease quantity of ${product.title}`}
                     >
                       −
@@ -56,7 +78,7 @@ const ShoppingCart = () => {
                       +
                     </button>
                   </div>
-                  <button type="button" className="link-button" onClick={() => removeItem(product.id)}>
+                  <button type="button" className="link-button" onClick={() => leave(product.id)}>
                     Remove<span className="sr-only"> {product.title}</span>
                   </button>
                 </div>

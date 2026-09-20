@@ -26,7 +26,7 @@ const Navbar = () => {
                 Cart
                 {count > 0 && (
                   <>
-                    <span className="cart-count" aria-hidden="true">
+                    <span key={count} className="cart-count" aria-hidden="true">
                       {count}
                     </span>
                     <span className="sr-only">

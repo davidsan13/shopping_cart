@@ -8,6 +8,7 @@ A mock e-commerce store ("Game Central") for PS5, Xbox Series X and Nintendo Swi
 - Cart persists across reloads (localStorage)
 - Subtotal, 8% estimated tax and total, calculated in whole cents to avoid floating-point rounding errors
 - Responsive layout and keyboard/screen-reader friendly (labelled controls, visible focus, skip link)
+- Restrained motion (press feedback, cart badge pop, cover fade-in, cart row exit, empty-state entrance) that keeps fades but drops movement under `prefers-reduced-motion`; the reasoning and exact values are in `plans/`
 
 # Tech Stacks
 - React JS (Context + `useReducer` for cart state)
@@ -21,6 +22,7 @@ npm install
 npm start        # dev server
 npm test         # unit and UI tests
 npm run deploy   # build and publish to GitHub Pages
+node scripts/screenshots.mjs   # regenerate the screenshots below (needs Playwright; see the script)
 ```
 
 # Lesson Learned
@@ -29,4 +31,20 @@ npm run deploy   # build and publish to GitHub Pages
 - Routers that work locally can break under a subpath like `/shopping_cart/`; a hash router avoids that on GitHub Pages.
 
 # Project Screenshots
-<!-- TODO: replace with screenshots of the redesigned UI -->
+
+### Home
+![Home page](docs/screenshots/home-desktop.png)
+
+### Products
+![Products page](docs/screenshots/products-desktop.png)
+
+### Cart
+![Cart page](docs/screenshots/cart-desktop.png)
+
+### Mobile
+<p>
+  <img src="docs/screenshots/products-mobile.png" alt="Products page on a phone" width="260" />
+  <img src="docs/screenshots/cart-mobile.png" alt="Cart page on a phone" width="260" />
+</p>
+
+<!-- Regenerate with: node scripts/screenshots.mjs (see the comments at the top of that file) -->

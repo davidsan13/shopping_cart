@@ -23,6 +23,9 @@
 
   --radius: 0.75rem;
   --content: 72rem;
+
+  // Motion: one strong ease-out for anything entering, exiting or answering a press.
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 [data-platform="PS5"] {
@@ -225,6 +228,16 @@ main {
   color: var(--brand);
   font-size: 0.8125rem;
   font-weight: 700;
+  transition: transform 200ms var(--ease-out);
+}
+
+// A small pop each time the count changes: the badge is remounted (key={count}) and settles
+// from scale(0.9). Opacity is left alone on purpose: the number must never blank out while
+// someone is adding games quickly.
+@starting-style {
+  .cart-count {
+    transform: scale(0.9);
+  }
 }
 
 // ---- Footer -----------------------------------------------------------
@@ -279,10 +292,14 @@ main {
   color: #fff;
   font-weight: 500;
   text-decoration: none;
-  transition: background-color 0.15s;
+  transition: background-color 0.15s, transform 160ms var(--ease-out);
 
   &:hover {
     background: var(--accent-dark);
+  }
+
+  &:active {
+    transform: scale(0.97);
   }
 
   &--large {
@@ -495,6 +512,13 @@ main {
     // Store photos come with a white background; multiply lets the tinted frame show
     // through it, so white margins of different sizes don't read as different-sized boxes.
     mix-blend-mode: multiply;
+    // Fade in once loaded (CoverImage sets data-loaded) so covers don't pop into their frames.
+    opacity: 0;
+    transition: opacity 200ms var(--ease-out);
+
+    &[data-loaded="true"] {
+      opacity: 1;
+    }
   }
 }
 
@@ -550,9 +574,17 @@ main {
   grid-template-columns: 5rem minmax(0, 1fr) auto;
   gap: 1rem;
   padding: 1rem;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
 
   & + & {
     border-top: 1px solid var(--line);
+  }
+
+  // Set by ShoppingCart.js for EXIT_MS (200) before the row is really removed.
+  &.is-leaving {
+    opacity: 0;
+    transform: translateX(-8px);
+    pointer-events: none;
   }
 }
 
@@ -573,6 +605,12 @@ main {
     height: calc(100% - 0.6rem);
     object-fit: var(--cover-fit);
     mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity 200ms var(--ease-out);
+
+    &[data-loaded="true"] {
+      opacity: 1;
+    }
   }
 }
 
@@ -622,9 +660,14 @@ main {
     background: var(--paper);
     font-size: 1.25rem;
     line-height: 1;
+    transition: background-color 0.15s, transform 160ms var(--ease-out);
 
     &:hover {
       background: var(--line);
+    }
+
+    &:active {
+      transform: scale(0.97);
     }
   }
 
@@ -693,6 +736,7 @@ main {
   gap: 1rem;
   padding: 4rem 1rem;
   text-align: center;
+  transition: opacity 250ms var(--ease-out), transform 250ms var(--ease-out);
 
   .page-title {
     margin: 0;
@@ -701,6 +745,13 @@ main {
   p {
     max-width: 40ch;
     color: var(--muted);
+  }
+}
+
+@starting-style {
+  .empty-state {
+    opacity: 0;
+    transform: translateY(8px);
   }
 }
 
@@ -751,8 +802,21 @@ main {
   }
 }
 
+
 @media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
+  .btn:active,
+  .stepper button:active {
+    transform: none;
+  }
+
+  @starting-style {
+    .cart-count,
+    .empty-state {
+      transform: none;
+    }
+  }
+
+  .cart-line.is-leaving {
+    transform: none;
   }
 }
