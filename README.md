@@ -8,7 +8,6 @@ A mock e-commerce store ("Game Central") for PS5, Xbox Series X and Nintendo Swi
 - Cart persists across reloads (localStorage)
 - Subtotal, 8% estimated tax and total, calculated in whole cents to avoid floating-point rounding errors
 - Responsive layout and keyboard/screen-reader friendly (labelled controls, visible focus, skip link)
-- Restrained motion (press feedback, cart badge pop, cover fade-in, cart row exit, empty-state entrance) that keeps fades but drops movement under `prefers-reduced-motion`; the reasoning and exact values are in `plans/`
 
 # Tech Stacks
 - React JS (Context + `useReducer` for cart state)
@@ -22,7 +21,6 @@ npm install
 npm start        # dev server
 npm test         # unit and UI tests
 npm run deploy   # build and publish to GitHub Pages
-node scripts/screenshots.mjs   # regenerate the screenshots below (needs Playwright; see the script)
 ```
 
 # Lesson Learned
